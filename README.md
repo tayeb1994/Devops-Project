@@ -53,7 +53,7 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
 ## MYSQL Setup
 - Login to the db vm **$ vagrant ssh db01**
 - Use  **$ Sudo -i** command to go root user
-- Verify Hosts entry, if entries missing update the it with IP and hostnames **cat /etc/hosts**
+- Verify Hosts entry, if entries missing update the it with IP and hostnames using this command **cat /etc/hosts**
 
 <img width="777" height="317" alt="image" src="https://github.com/user-attachments/assets/22bced89-d7ee-4faf-ae09-13930076db1c" />
 
@@ -102,8 +102,10 @@ NOTE:Set db root password, I will be using admin123 as password
 <img width="900" height="717" alt="image" src="https://github.com/user-attachments/assets/c7104324-eece-44fa-8c47-6562be80debf" />
 
 - mysql> exit;
+
 - **Restartmariadb-server**
 1. #systemctl restart mariadb
+
 -**Starting the firewall and allowing the maria db to access from port no.3306**
 1. #systemctl start firewalld
 2. #systemctl enable firewalld
