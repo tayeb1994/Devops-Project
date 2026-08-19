@@ -20,13 +20,16 @@ Windows Tools Install chocolatey from the instructions given in the link below.
    
 **Execute below command in your computer to install host manager plugin.**
 - $ vagrant plugin install vagrant-hostmanager  **(vagrant plugin install vagrant-hostmanager tells Vagrant to download and install the vagrant-hostmanager plugin, which automatically manages your system’s /etc/hosts file for multi‑machine Vagrant setups.)**
+
 4. Git bash or equivalent editor
+
 ## VM SETUP
 1. Clone source code.
 https://github.com/hkhcoder/vprofile-project
 2. Cd into the repository.
 3. Switch to the local branch.(/d/project_AWS_Imran/vprofile-project)
 4. cd into vagrant/Manual_provisioning
+
 ## Bring up vm’s
 $ vagrant up
 
@@ -35,7 +38,9 @@ $ vagrant up
 
 *NOTE: Bringing up all the vm’s may take a long time based on various factors.If vm setup stops in the middle run “vagrant up” command again.*
 INFO: All the vm’s hostname and /etc/hosts file entries will be automatically updated
+
 ## PROVISIONING
+
 **Services**
 1. Nginx=> Web Service
 2. Tomcat=> Application Server
@@ -43,6 +48,7 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
 4. Memcache=> DB Caching
 5. ElasticSearch => Indexing/Search service
 6. MySQL=> SQL Database
+
 - **Setup should be done in below mentioned order**
     1. MySQL
     2. (Database SVC)
@@ -50,6 +56,7 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
     4. RabbitMQ (Broker/Queue SVC)
     5. Tomcat(Application SVC)
     6. Nginx(Web SVC)
+
 ## MYSQL Setup
 - Login to the db vm **$ vagrant ssh db01**
 - Use  **$ Sudo -i** command to go root user
