@@ -14,6 +14,6 @@ Windows Tools Install chocolatey from the instructions given in the link below.
 <img width="672" height="474" alt="image" src="https://github.com/user-attachments/assets/c8d37688-f118-4539-a38e-d0f5f07d70d6" />
 
 ## Prerequisite
-- Oracle VM Virtualbox
-- 2. Vagrant
+1. Oracle VM Virtualbox
+2. Vagrant
 - 3. Vagrant plugins
