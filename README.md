@@ -27,5 +27,5 @@ https://github.com/hkhcoder/vprofile-project
 2. Cd into the repository.
 3. Switch to the local branch.(/d/project_AWS_Imran/vprofile-project)
 4. cd into vagrant/Manual_provisioning
-Bring up vm’s
+## Bring up vm’s
 $ vagrant up
