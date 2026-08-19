@@ -70,7 +70,7 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
 <img width="659" height="436" alt="image" src="https://github.com/user-attachments/assets/aa1ed3fc-1ba4-46c1-911a-6f94c8f390ff" />
 
 - Starting & enabling mariadb-server
-       1.**systemctl start mariadb**
-       2.**systemctl enable mariadb**
-       3.**systemctl status mariadb**
+1. **systemctl start mariadb**
+2. **systemctl enable mariadb**
+3. **systemctl status mariadb**
 
