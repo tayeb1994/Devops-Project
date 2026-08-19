@@ -35,3 +35,18 @@ $ vagrant up
 
 *NOTE: Bringing up all the vm’s may take a long time based on various factors.If vm setup stops in the middle run “vagrant up” command again.*
 INFO: All the vm’s hostname and /etc/hosts file entries will be automatically updated
+## PROVISIONING
+Services
+1. Nginx=> Web Service
+2. Tomcat=> Application Server
+3. RabbitMQ=> Broker/Queuing Agent
+4. Memcache=> DB Caching
+5. ElasticSearch => Indexing/Search service
+6. MySQL=> SQL Database
+**Setup should be done in below mentioned order**
+    1. MySQL
+    2. (Database SVC)
+    3. Memcache (DB Caching SVC)
+    4. RabbitMQ (Broker/Queue SVC)
+    5. Tomcat(Application SVC)
+    6. Nginx(Web SVC)
