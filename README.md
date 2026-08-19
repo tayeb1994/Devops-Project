@@ -74,3 +74,22 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
 2. **systemctl enable mariadb**
 3. **systemctl status mariadb**
 
+<img width="1168" height="538" alt="image" src="https://github.com/user-attachments/assets/de1c8a43-db3e-4210-b4bc-2c7431d13fc5" />
+
+- RUN mysql secure installationscript. **# mysql_secure_installation**
+NOTE:Set db root password, I will be using admin123 as password
+
+<img width="632" height="791" alt="image" src="https://github.com/user-attachments/assets/6ae8aa38-c678-4066-a93e-5fdc73134c95" />
+
+- Set DB name and users. **# mysql -u root – p ( pass: 123)**
+
+<img width="720" height="277" alt="image" src="https://github.com/user-attachments/assets/3fdae333-24e5-4e4e-b855-fe387b9cd624" />
+
+- mysql> create database accounts;
+- mysql> grant all privileges on accounts.* TO 'admin'@'localhost' identified by 'admin123'; for local login
+- mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123'; for remote access
+- mysql> FLUSH PRIVILEGES;
+- mysql> exit;
+
+
+
