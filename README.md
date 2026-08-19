@@ -1,6 +1,6 @@
 # Devops-Project
 ## Multi Trier Application Setup Locally 
-## Windows Tools Install chocolatey from the instructions given in the link below. 
+Windows Tools Install chocolatey from the instructions given in the link below. 
 - https://chocolatey.org/docs/installation 
 Run all the below commands on Powershell (Open Powershell as Admin) 
 choco install virtualbox--version=7.0.8-y 
