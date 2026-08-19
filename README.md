@@ -36,7 +36,7 @@ $ vagrant up
 *NOTE: Bringing up all the vm’s may take a long time based on various factors.If vm setup stops in the middle run “vagrant up” command again.*
 INFO: All the vm’s hostname and /etc/hosts file entries will be automatically updated
 ## PROVISIONING
-Services
+**Services**
 1. Nginx=> Web Service
 2. Tomcat=> Application Server
 3. RabbitMQ=> Broker/Queuing Agent
@@ -50,3 +50,8 @@ Services
     4. RabbitMQ (Broker/Queue SVC)
     5. Tomcat(Application SVC)
     6. Nginx(Web SVC)
+## MYSQL Setup
+Login to the db vm **$ vagrant ssh db01**
+Use  **$ Sudo -i command to go root user**
+Verify Hosts entry, if entries missing update the it with IP and hostnames
+# cat /etc/hosts
