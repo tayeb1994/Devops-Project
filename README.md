@@ -51,6 +51,7 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
     5. Tomcat(Application SVC)
     6. Nginx(Web SVC)
 ## MYSQL Setup
-Login to the db vm **$ vagrant ssh db01**
+- Login to the db vm **$ vagrant ssh db01**
 - Use  **$ Sudo -i command to go root user**
 - Verify Hosts entry, if entries missing update the it with IP and hostnames **cat /etc/hosts**
+<img width="777" height="317" alt="image" src="https://github.com/user-attachments/assets/22bced89-d7ee-4faf-ae09-13930076db1c" />
