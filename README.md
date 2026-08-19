@@ -98,5 +98,19 @@ NOTE:Set db root password, I will be using admin123 as password
 5. mysql-u root-p accounts
 6. mysql> show tables;
 
+<img width="900" height="717" alt="image" src="https://github.com/user-attachments/assets/c7104324-eece-44fa-8c47-6562be80debf" />
+
+- mysql> exit;
+- **Restartmariadb-server**
+- #systemctl restart mariadb
+- **Starting the firewall and allowing the maria db to access from port no.3306**
+- #systemctl start firewalld
+- #systemctl enable firewalld
+- #firewall-cmd--get-active-zones
+- #firewall-cmd--zone=public--add-port=3306/tcp--permanent
+- #firewall-cmd--reload
+- #systemctl restart mariadb
+
+
 
 
