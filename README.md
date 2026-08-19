@@ -29,6 +29,7 @@ https://github.com/hkhcoder/vprofile-project
 4. cd into vagrant/Manual_provisioning
 ## Bring up vm’s
 $ vagrant up
+
 <img width="795" height="331" alt="image" src="https://github.com/user-attachments/assets/195c061a-5ed5-474b-bd57-952586962a2a" />
 
 NOTE: Bringing up all the vm’s may take a long time based on various factors.If vm setup stops in the middle run “vagrant up” command again.
