@@ -21,3 +21,11 @@ Windows Tools Install chocolatey from the instructions given in the link below.
 **Execute below command in your computer to install host manager plugin.**
 - $ vagrant plugin install vagrant-hostmanager  **(vagrant plugin install vagrant-hostmanager tells Vagrant to download and install the vagrant-hostmanager plugin, which automatically manages your system’s /etc/hosts file for multi‑machine Vagrant setups.)**
 4. Git bash or equivalent editor
+## VM SETUP
+1. Clone source code.
+https://github.com/hkhcoder/vprofile-project
+2. Cd into the repository.
+3. Switch to the local branch.(/d/project_AWS_Imran/vprofile-project)
+4. cd into vagrant/Manual_provisioning
+Bring up vm’s
+$ vagrant up
