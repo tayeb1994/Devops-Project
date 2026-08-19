@@ -55,3 +55,15 @@ INFO: All the vm’s hostname and /etc/hosts file entries will be automatically 
 - Use  **$ Sudo -i command to go root user**
 - Verify Hosts entry, if entries missing update the it with IP and hostnames **cat /etc/hosts**
 <img width="777" height="317" alt="image" src="https://github.com/user-attachments/assets/22bced89-d7ee-4faf-ae09-13930076db1c" />
+
+- Update OS with latest patches **# dnf update-y**
+<img width="624" height="468" alt="image" src="https://github.com/user-attachments/assets/5d9afa0e-257e-49bb-aeba-dd289a3e375e" />
+- Set Repository **# dnf install epel-release-y**
+<img width="618" height="296" alt="image" src="https://github.com/user-attachments/assets/77342141-4895-4371-8817-a50aa58ebb07" />
+- Install Maria DB Package **# dnf install git mariadb-server -y**
+<img width="659" height="436" alt="image" src="https://github.com/user-attachments/assets/aa1ed3fc-1ba4-46c1-911a-6f94c8f390ff" />
+- Starting & enabling mariadb-server
+1.**systemctl start mariadb**
+2.**systemctl enable mariadb**
+3.**systemctl status mariadb**
+
