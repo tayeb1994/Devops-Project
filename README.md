@@ -102,14 +102,14 @@ NOTE:Set db root password, I will be using admin123 as password
 
 - mysql> exit;
 - **Restartmariadb-server**
-- #systemctl restart mariadb
-- **Starting the firewall and allowing the maria db to access from port no.3306**
-- #systemctl start firewalld
-- #systemctl enable firewalld
-- #firewall-cmd--get-active-zones
-- #firewall-cmd--zone=public--add-port=3306/tcp--permanent
-- #firewall-cmd--reload
-- #systemctl restart mariadb
+1. #systemctl restart mariadb
+-**Starting the firewall and allowing the maria db to access from port no.3306**
+1. #systemctl start firewalld
+2. #systemctl enable firewalld
+3. #firewall-cmd--get-active-zones
+4. #firewall-cmd--zone=public--add-port=3306/tcp--permanent
+5. #firewall-cmd--reload
+6. #systemctl restart mariadb
 
 
 
