@@ -90,6 +90,13 @@ NOTE:Set db root password, I will be using admin123 as password
 - mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123'; for remote access
 - mysql> FLUSH PRIVILEGES;
 - mysql> exit;
+- **Download Source code & Initialize Database.**
+1. # cd /tmp/
+2. # git clone-b local https://github.com/hkhcoder/vprofile-project.git
+3. # cd vprofile-project
+4. # mysql-u root-p accounts < src/main/resources/db_backup.sql (pass: 123 )
+5. # mysql-u root-p accounts
+6. mysql> show tables;
 
 
 
