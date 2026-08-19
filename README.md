@@ -86,8 +86,8 @@ NOTE:Set db root password, I will be using admin123 as password
 <img width="720" height="277" alt="image" src="https://github.com/user-attachments/assets/3fdae333-24e5-4e4e-b855-fe387b9cd624" />
 
 - mysql> create database accounts;
-- mysql> grant all privileges on accounts.* TO 'admin'@'localhost' identified by 'admin123'; for local login
-- mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123'; for remote access
+- mysql> grant all privileges on accounts.* TO 'admin'@'localhost' identified by 'admin123'; **for local login**
+- mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123'; **for remote access**
 - mysql> FLUSH PRIVILEGES;
 - mysql> exit;
 - **Download Source code & Initialize Database.**
