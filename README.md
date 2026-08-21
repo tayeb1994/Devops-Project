@@ -135,6 +135,30 @@ NOTE:Set db root password, I will be using admin123 as password
 
 <img width="1893" height="1120" alt="image" src="https://github.com/user-attachments/assets/9f0d10cb-3f12-4496-b0b6-4b2395b5250c" />
 
+
 - #sed-i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached   (You only have to change 127.0.0.1 → 0.0.0.0 when you want **memcached to accept connections from other machines, not just from the local server**.)
+- The bind address determines who can reach your memcached instance:
+    • **127.0.0.1** = listen only on localhost → no external access (This is the default on many systems because memcached has no authentication and should not be exposed publicly.) 
+    • **0.0.0.0** = listen on all network interfaces → any machine that can reach your server can connect (This is used when memcached is part of a distributed setup and other servers need access.) 
 
+- #sudo systemctl restart memcached 
 
+**Starting the firewall and allowing the port 11211 to access memcache**  
+1. #systemctl start firewalld 
+2. #systemctl enable firewalld 
+3. #firewall-cmd--add-port=11211/tcp 
+4. #firewall-cmd--runtime-to-permanent 
+5. #firewall-cmd--add-port=11111/udp 
+6. #firewall-cmd--runtime-to-permanent 
+ 
+- #sudo memcached-p 11211-U 11111-u memcached-d
+
+## 3.RABBITMQ SETUP 
+- Log into the RabbitMQ vm $ vagrant ssh rmq01 
+- Verify Hostsentry, if entries missing update the it with IP and hostnames, #cat /etc/hosts 
+- Update OS with latest patches, #dnf update-y    
+
+<img width="804" height="615" alt="image" src="https://github.com/user-attachments/assets/0c3b0078-dfee-4602-9f81-98a27cec0a27" />
+
+- Set EPEL Repository, # dnf install epel-release-y
+- Install Dependencies, # sudo dnf install wget-y (**means: Install the wget package using DNF, run as root, and automatically confirm the installation.**)
