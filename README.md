@@ -120,7 +120,7 @@ NOTE:Set db root password, I will be using admin123 as password
 4. #firewall-cmd--zone=public--add-port=3306/tcp--permanent
 5. #firewall-cmd--reload
 6. #systemctl restart mariadb
-
+##2.MEM CACHE SETUP 
 
 
 
