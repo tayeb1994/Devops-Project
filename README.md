@@ -162,3 +162,26 @@ NOTE:Set db root password, I will be using admin123 as password
 
 - Set EPEL Repository, # dnf install epel-release-y
 - Install Dependencies, # sudo dnf install wget-y (**means: Install the wget package using DNF, run as root, and automatically confirm the installation.**)
+
+<img width="856" height="245" alt="image" src="https://github.com/user-attachments/assets/70212deb-cf98-427a-a9b1-0553bb8bdeca" />
+
+- #dnf-y install centos-release-rabbitmq-38  (**means:Install the RabbitMQ 3.8 repository package and automatically confirm the installation.**)
+
+<img width="874" height="649" alt="image" src="https://github.com/user-attachments/assets/68a8d754-1cda-454b-94dc-822fba5f3132" />
+
+- #dnf--enablerepo=centos-rabbitmq-38-y install rabbitmq-server (**means:Enable the RabbitMQ 3.8 repository, automatically confirm prompts, and install the RabbitMQ server package.**)
+
+<img width="874" height="639" alt="image" src="https://github.com/user-attachments/assets/5210224b-ad93-4deb-b702-43fc078011a2" />
+
+**Set up access to user test and make it admin**
+# sudo sh-c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
+means: As root, write a RabbitMQ config file that allows the guest user to connect from any host.
+# sudo rabbitmqctl add_user test test
+means: As root, create a RabbitMQ user named test with the password test.
+# sudo rabbitmqctl set_user_tags test administrator
+means:As root, give the user test full administrator privileges in RabbitMQ.
+#rabbitmqctl set_permissions-p / test ".*" ".*" ".*"
+means:Give user test full configure, write, and read permissions on the default vhost /
+
+# sudo systemctl restart rabbitmq-server
+# sudo systemctl status rabbitmq-server
