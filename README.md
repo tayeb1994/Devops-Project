@@ -126,15 +126,15 @@ NOTE:Set db root password, I will be using admin123 as password
 2. Verify Hosts entry, if entries missing update the it with IP and host names   # cat /etc/hosts 
 3. Update OS with latest patches,   # dnf update-y 
 
-## Install start & enable memcache on port 11211 
-#sudo dnf install epel-release-y 
-#sudo dnf install memcached-y
-#sudo systemctl start memcached 
-#sudo systemctl enable memcached
-#sudo systemctl status memcached
+**Install start & enable memcache on port 11211** 
+- #sudo dnf install epel-release-y 
+- #sudo dnf install memcached-y
+- #sudo systemctl start memcached 
+- #sudo systemctl enable memcached
+- #sudo systemctl status memcached
 
 <img width="1893" height="1120" alt="image" src="https://github.com/user-attachments/assets/9f0d10cb-3f12-4496-b0b6-4b2395b5250c" />
 
-#sed-i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached   (You only have to change 127.0.0.1 → 0.0.0.0 when you want **memcached to accept connections from other machines, not just from the local server**.)
+- #sed-i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached   (You only have to change 127.0.0.1 → 0.0.0.0 when you want **memcached to accept connections from other machines, not just from the local server**.)
 
 
