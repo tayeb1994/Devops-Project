@@ -181,4 +181,117 @@ NOTE:Set db root password, I will be using admin123 as password
 - #rabbitmqctl set_permissions-p / test ".*" ".*" ".*" (**means:Give user test full configure, write, and read permissions on the default vhost /**)
 - #sudo systemctl restart rabbitmq-server
 - #sudo systemctl status rabbitmq-server
-<u>Your text here</u>
+
+<img width="866" height="641" alt="image" src="https://github.com/user-attachments/assets/5caa419b-daf5-466d-a483-4853873359a0" />
+
+## 4.TOMCAT SETUP 
+**Tomcat is a Java-based web server and servlet container. To run it, you need Java installed, Tomcat downloaded, and the service started.** 
+- Login to the tomcat vm, $ vagrant ssh app01
+- Verify Hosts entry, if entries missing update the it with IP and hostnames, #cat /etc/hosts
+- Update OS with latest patches, # dnf update-y
+- Set Repository, # dnf install epel-release-y
+- Install Dependencies, # dnf-y install java-17-openjdk java-17-openjdk-devel
+
+<img width="808" height="527" alt="image" src="https://github.com/user-attachments/assets/0edb3058-7a03-480e-9cef-68c449681caa" />
+
+- **#dnf install git wget-y** is a package‑installation command for Fedora, RHEL, and CentOS 8+ systems. Here’s exactly what each part means and why it’s used. 
+**Git → for cloning repos, managing code**
+**Wget → for downloading files via HTTP/HTTPS/FTP**
+
+<img width="822" height="715" alt="image" src="https://github.com/user-attachments/assets/34b4355d-c64e-4ae6-87c5-90df783bc3a7" />
+
+- Change dir to /tmp, # cd /tmp/
+- Download & Tomcat Package, # wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.1.26/bin/apache-tomcat-10 .1.26.tar.gz
+
+<img width="820" height="687" alt="image" src="https://github.com/user-attachments/assets/a7ea9324-094b-4c5b-b357-bbb78a6ac2a8" />
+
+- #tar -xzvf apache-tomcat-10.1.26.tar.gz (**This command extracts the compressed Tomcat archive (apache-tomcat-10.1.26.tar.gz) into the current directory.**) 
+
+<img width="812" height="637" alt="image" src="https://github.com/user-attachments/assets/d51da8e1-5ba8-4d0d-a7b6-391446a8e839" />
+
+**Add tomcat user**
+- #useradd --home-dir /usr/local/tomcat --shell /sbin/nologin tomcat (**This command creates a new system user named tomcat, gives it a custom home directory at /usr/local/tomcat, and prevents it from logging in by assigning the nologin shell.**) 
+- Copy data to tomcat home dir, # cp -r /tmp/apache-tomcat-10.1.26/* /usr/local/tomcat/ (**It copies all files and folders from the extracted Tomcat directory in /tmp into the Tomcat installation directory at /usr/local/tomcat/.**) 
+- Make tomcat user owner of tomcat home dir, # chown -R tomcat.tomcat /usr/local/tomcat (**It changes the ownership of all files and folders inside /usr/local/tomcat so that the tomcat user and tomcat group own them.**)
+
+**Set up system ctl command for tomcat**
+- Open tomcat service file, # vi /etc/systemd/system/tomcat.service
+- Update the file with below content
+
+**[Unit]
+Description=Tomcat
+After=network.target
+[Service]
+User=tomcat
+Group=tomcat
+WorkingDirectory=/usr/local/tomcat
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
+Environment=CATALINA_HOME=/usr/local/tomcat
+Environment=CATALINE_BASE=/usr/local/tomcat
+ExecStart=/usr/local/tomcat/bin/catalina.sh run
+ExecStop=/usr/local/tomcat/bin/shutdown.sh
+RestartSec=10
+Restart=always
+[Install]
+WantedBy=multi-user.target**
+
+**Reload systemd files**
+- # systemctl daemon-reload
+
+**Start & Enable service**
+- #systemctl start tomcat
+- #systemctl enable tomcat
+- #systemctl status tomcat
+  
+<img width="905" height="620" alt="image" src="https://github.com/user-attachments/assets/6dd9bfd0-90d7-4b24-9121-22dd3a2aed56" />
+
+## CODE BUILD & DEPLOY(app01)
+**Maven Setup**
+- #cd /tmp/ (**Moves you into the /tmp directory — a temporary workspace commonly used for downloads and installations.** )
+- #wget https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip ( **Downloads the Maven 3.9.9 binary ZIP file from the Apache archive.**)
+
+  <img width="895" height="416" alt="image" src="https://github.com/user-attachments/assets/7621b207-a8d9-4abe-a700-89a98553a0ea" />
+
+- #unzip apache-maven-3.9.9-bin.zip (Extracts the ZIP file.) 
+- #cp-r apache-maven-3.9.9 /usr/local/maven3.9 ( Copies the extracted Maven directory into /usr/local/ )
+
+<img width="902" height="225" alt="image" src="https://github.com/user-attachments/assets/f36065dd-289b-45fc-9a92-7db2e18c9884" />
+
+- #export MAVEN_OPTS="-Xmx512m" 
+**Sets a JVM option for Maven:**
+    • -Xmx512m = maximum heap size 512 MB
+    • Helps Maven run more smoothly on large builds
+- Download Source code, # git clone-b local https://github.com/hkhcoder/vprofile-project.git
+
+<img width="893" height="623" alt="image" src="https://github.com/user-attachments/assets/e2359787-b8af-4249-8a0c-0a3c444c46c2" />
+
+**Update configuration**
+- #cd vprofile-project
+- #vim src/main/resources/application.properties
+
+<img width="902" height="625" alt="image" src="https://github.com/user-attachments/assets/072481c3-105f-415f-a3b9-787b0844f1b6" />
+
+- #Update file with backend server details ( don’t have to change now)
+**Build code**
+- Run below command inside the repository (vprofile-project), # /usr/local/maven3.9/bin/mvn install
+
+<img width="898" height="622" alt="image" src="https://github.com/user-attachments/assets/5965fd10-ebc7-445e-b253-8c1b3f6dc9f6" />
+
+<img width="892" height="312" alt="image" src="https://github.com/user-attachments/assets/0005d621-bda4-48d9-b398-e0a560316508" />
+
+**Deploy artifact**
+- #systemctl stop tomcat
+- #rm-rf /usr/local/tomcat/webapps/ROOT*
+- #cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+- #systemctl start tomcat
+- #chown tomcat.tomcat /usr/local/tomcat/webapps-R
+- #systemctl restart tomcat
+
+<img width="900" height="620" alt="image" src="https://github.com/user-attachments/assets/6581ae2b-bb49-4bf8-8611-ff684cdb64ca" />
+
+
+
+
+
+
