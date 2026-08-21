@@ -173,15 +173,11 @@ NOTE:Set db root password, I will be using admin123 as password
 
 <img width="874" height="639" alt="image" src="https://github.com/user-attachments/assets/5210224b-ad93-4deb-b702-43fc078011a2" />
 
-**Set up access to user test and make it admin**
-# sudo sh-c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
-means: As root, write a RabbitMQ config file that allows the guest user to connect from any host.
-# sudo rabbitmqctl add_user test test
-means: As root, create a RabbitMQ user named test with the password test.
-# sudo rabbitmqctl set_user_tags test administrator
-means:As root, give the user test full administrator privileges in RabbitMQ.
-#rabbitmqctl set_permissions-p / test ".*" ".*" ".*"
-means:Give user test full configure, write, and read permissions on the default vhost /
 
-# sudo systemctl restart rabbitmq-server
-# sudo systemctl status rabbitmq-server
+**Set up access to user test and make it admin**
+- #sudo sh-c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config' (**means: As root, write a RabbitMQ config file that allows the guest user to connect from any host.**)
+- #sudo rabbitmqctl add_user test test (**means: As root, create a RabbitMQ user named test with the password test.**)
+- #sudo rabbitmqctl set_user_tags test administrator (**means:As root, give the user test full administrator privileges in RabbitMQ.**)
+- #rabbitmqctl set_permissions-p / test ".*" ".*" ".*" (**means:Give user test full configure, write, and read permissions on the default vhost /**)
+- #sudo systemctl restart rabbitmq-server
+- #sudo systemctl status rabbitmq-server
