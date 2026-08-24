@@ -299,21 +299,15 @@ WantedBy=multi-user.target**
 
 <img width="982" height="172" alt="image" src="https://github.com/user-attachments/assets/38a1c485-b29f-4699-96f4-1c984b981f71" />
 
+
 <img width="990" height="703" alt="image" src="https://github.com/user-attachments/assets/6013a219-c336-4235-8101-d44c82686391" />
+
 
 **Create Nginx conf file**
 - Open the file using vim, #vi /etc/nginx/sites-available/vproap
 - Update with below content
 
-**upstream vproapp {
-server app01:8080;
-}
-server {
-listen 80;
-location / {
-proxy_pass http://vproapp;
-}
-}**
+<img width="978" height="275" alt="image" src="https://github.com/user-attachments/assets/100762ba-9ae0-44d6-a0e3-45e98096e519" />
 
 - It defines an **upstream block** named vproapp and a **server block** that proxies all incoming HTTP traffic to that upstream. **It’s a classic NGINX reverse‑proxy setup**.
 1. Upstream block -This creates a logical group of backend servers called vproapp.
@@ -326,8 +320,7 @@ proxy_pass http://vproapp;
 
 <img width="978" height="275" alt="image" src="https://github.com/user-attachments/assets/100762ba-9ae0-44d6-a0e3-45e98096e519" />
 
-2. Directory Structure
-
+2. **Directory Structure**
 **/etc/nginx/nginx.conf — main config
 
 /etc/nginx/sites-available/ — virtual host configs
@@ -335,6 +328,46 @@ proxy_pass http://vproapp;
 /etc/nginx/sites-enabled/ — active configs
 
 /var/www/html/ — default web root**
+
+- **Remove default nginx conf**, #rm-rf /etc/nginx/sites-enabled/default
+- Create link to activate website, # ln-s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+That command is part of the NGINX virtual‑host activation process.
+Here’s the clear takeaway:
+**ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp**  creates a symbolic link so NGINX will load your vproapp site configuration.
+- What the Command Does
+1. ln -s ,Creates a symbolic link (soft link). Think of it as a shortcut pointing to another file.
+2. /etc/nginx/sites-available/vproapp, This is where your site configuration file actually lives.You place configs here but NGINX does not load them automatically.
+3. /etc/nginx/sites-enabled/vproapp, This directory contains active site configs. NGINX only reads files from sites-enabled.
+**Why This Step Matters**
+- NGINX uses a two‑directory model: **1.sites-available → store configs, 2.sites-enabled → activate configs**, By linking the file into sites-enabled, you tell NGINX: “Load this configuration when you start or reload.” Without this link, your vproapp server block will not be used.
+
+**Restart & Status Nginx**
+- #systemctl restart ngin
+- #systemctl status nginx
+
+<img width="987" height="702" alt="image" src="https://github.com/user-attachments/assets/54aea5f1-653d-4cb2-9e16-faa02a829673" />
+
+<img width="1900" height="1093" alt="image" src="https://github.com/user-attachments/assets/14a27b04-82e9-4aff-96f4-758f30f1010c" />
+
+It proves that NGNX has taken the request and forward to TOMCAT, this pages comes from TOMCAT
+
+<img width="1867" height="1077" alt="image" src="https://github.com/user-attachments/assets/b4391850-bfde-423b-a181-5a8dd1f3c679" />
+
+we are able to login that means database service is working.
+
+<img width="663" height="486" alt="image" src="https://github.com/user-attachments/assets/f829221d-8009-424c-959e-8f59b2ef7755" />
+
+It proves that RabitMQ is connected and working.
+
+<img width="1898" height="1022" alt="image" src="https://github.com/user-attachments/assets/ce63c8d2-1732-4c23-940d-e29fa3788122" />
+
+It proves that MEMCACHE is connected and working.
+
+
+
+
+
+
 
 
 
