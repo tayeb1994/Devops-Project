@@ -290,5 +290,12 @@ WantedBy=multi-user.target**
 
 <img width="900" height="620" alt="image" src="https://github.com/user-attachments/assets/6581ae2b-bb49-4bf8-8611-ff684cdb64ca" />
 
+## 5.NGINXSETUP 
+- Log into the Nginx vm $ vagrant ssh web01
+- Go to root, $ sudo-i
+- Verify Hosts entry, if entries missing update the it with IP and hostnames # cat /etc/hosts 
+- Update OS with latest patches # apt update && apt upgrade
+- Install nginx # apt install nginx-y
+
 
 
