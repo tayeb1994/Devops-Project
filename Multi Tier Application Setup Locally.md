@@ -290,12 +290,52 @@ WantedBy=multi-user.target**
 
 <img width="900" height="620" alt="image" src="https://github.com/user-attachments/assets/6581ae2b-bb49-4bf8-8611-ff684cdb64ca" />
 
-## 5.NGINXSETUP 
+## 5.NGINX SETUP 
 - Log into the Nginx vm $ vagrant ssh web01
 - Go to root, $ sudo-i
-- Verify Hosts entry, if entries missing update the it with IP and hostnames # cat /etc/hosts 
-- Update OS with latest patches # apt update && apt upgrade
-- Install nginx # apt install nginx-y
+- Verify Hosts entry, if entries missing update the it with IP and hostnames, # cat /etc/hosts 
+- Update OS with latest patches, # apt update && apt upgrade
+- Install nginx, # apt install nginx-y
+
+<img width="982" height="172" alt="image" src="https://github.com/user-attachments/assets/38a1c485-b29f-4699-96f4-1c984b981f71" />
+
+<img width="990" height="703" alt="image" src="https://github.com/user-attachments/assets/6013a219-c336-4235-8101-d44c82686391" />
+
+**Create Nginx conf file**
+- Open the file using vim, #vi /etc/nginx/sites-available/vproap
+- Update with below content
+
+**upstream vproapp {
+server app01:8080;
+}
+server {
+listen 80;
+location / {
+proxy_pass http://vproapp;
+}
+}**
+
+- It defines an **upstream block** named vproapp and a **server block** that proxies all incoming HTTP traffic to that upstream. **It’s a classic NGINX reverse‑proxy setup**.
+1. Upstream block -This creates a logical group of backend servers called vproapp.
+        1. upstream = a pool of backend servers NGINX can forward requests to
+        2. server app01:8080 = your application is running on host app01 at port 8080
+2. Server block -This defines how NGINX handles incoming requests.
+        1.listen 80 → NGINX listens on port 80 (HTTP)
+        2.location / → matches all paths
+        3.proxy_pass http://vproapp → forwards the request to the upstream group you defined
+
+<img width="978" height="275" alt="image" src="https://github.com/user-attachments/assets/100762ba-9ae0-44d6-a0e3-45e98096e519" />
+
+2. Directory Structure
+
+**/etc/nginx/nginx.conf — main config
+
+/etc/nginx/sites-available/ — virtual host configs
+
+/etc/nginx/sites-enabled/ — active configs
+
+/var/www/html/ — default web root**
+
 
 
 
