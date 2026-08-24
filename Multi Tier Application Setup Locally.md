@@ -237,7 +237,7 @@ Restart=always
 WantedBy=multi-user.target**
 
 **Reload systemd files**
-- # systemctl daemon-reload
+- #systemctl daemon-reload
 
 **Start & Enable service**
 - #systemctl start tomcat
