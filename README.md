@@ -1,6 +1,6 @@
 # Multi Trier Application Setup Locally
-- The purpose is to build, run, test, and understand your entire application on your laptop before sending it to the cloud.
-Windows Tools Install chocolatey from the instructions given in the link below. 
+**The purpose is to build, run, test, and understand your entire application on my laptop before sending it to the cloud.**
+- Windows Tools Install chocolatey from the instructions given in the link below. 
 - https://chocolatey.org/docs/installation 
 ## Run all the below commands on Powershell (Open Powershell as Admin) 
 - choco install virtualbox--version=7.0.8-y 
