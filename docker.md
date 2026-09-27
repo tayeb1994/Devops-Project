@@ -3,8 +3,6 @@
 ## **1. What Docker is and why developers use it**
 Docker is a tool that lets you **package an app + all its dependencies into a container** so it runs the same everywhere—your laptop, a server, the cloud. 
 
-“Docker architecture uses a client–server model. The Docker Client sends commands to the Docker Daemon, which builds images, runs containers, manages resources, and interacts with registries. Images act as blueprints, containers are the running instances, and everything is optimized through a layered filesystem.”
-
 **Why devs love it:**
 
 1. No more “works on my machine”—environment is baked into the image. 
@@ -42,6 +40,8 @@ Both containers and VMs isolate stuff—but in different ways.
 
 ## 3. Docker architecture: images, containers, layers, registries
 
+“Docker architecture uses a client–server model. The Docker Client sends commands to the Docker Daemon, which builds images, runs containers, manages resources, and interacts with registries. Images act as blueprints, containers are the running instances, and everything is optimized through a layered filesystem.”
+
 **Core concepts:**
 
 **Image:**
@@ -75,25 +75,25 @@ Default: Docker Hub.
 **4. How to write a Dockerfile (beginner → advanced)**
 
 #Base image
-FROM node:20-alpine
+**FROM node:20-alpine**
 
 #Set working directory
-WORKDIR /app
+**WORKDIR /app**
 
 #Copy dependency files
-COPY package*.json ./
+**COPY package*.json ./**
 
 #Install dependencies
-RUN npm install
+**RUN npm install**
 
 #Copy source code
-COPY . .
+**COPY . .**
 
 #Expose port
-EXPOSE 3000
+**EXPOSE 3000**
 
 #Start app
-CMD ["node", "server.js"]
+**CMD ["node", "server.js"]**
 
 **5. Multi‑stage Dockerfile (real project)**
 
@@ -102,31 +102,31 @@ Example: Node.js app, multi‑stage
 **# Stage 1: Build**
 FROM node:20-alpine AS build
 
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build    **# e.g. builds /dist**
+- WORKDIR /app
+- COPY package*.json ./
+- RUN npm ci
+- COPY . .
+- RUN npm run build    **# e.g. builds /dist**
 
 **# Stage 2: Production**
-FROM node:20-alpine AS prod
+- FROM node:20-alpine AS prod
 
-WORKDIR /app
-COPY --from=build /app/dist ./dist
-COPY package*.json ./
-RUN npm ci --only=production
+- WORKDIR /app
+- COPY --from=build /app/dist ./dist
+- COPY package*.json ./
+- RUN npm ci --only=production
 
-ENV NODE_ENV=production
-EXPOSE 3000
-CMD ["node", "dist/server.js"]
+- ENV NODE_ENV=production
+- EXPOSE 3000
+- CMD ["node", "dist/server.js"]
 
 **7. Docker Compose explained (with examples)**
 
 Docker Compose lets you define multiple containers (services) in one YAML file and run them together.
 
-version: "3.9"
+- version: "3.9"
 
-services:
+- services:
   app:
     build: .
     ports:
