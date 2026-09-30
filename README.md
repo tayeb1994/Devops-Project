@@ -1,19 +1,3 @@
-.
-├── nginx/
-│   ├── nginx.conf
-│   └── cache.conf
-├── tomcat/
-│   └── app.war
-├── mysql/
-│   └── schema.sql
-├── memcache/
-│   └── config/
-├── rabbitmq/
-│   └── definitions.json
-├── elasticsearch/
-│   └── index-mapping.json
-└── README.md
-
 # Multi Trier Application Setup Locally
 **The purpose of this project is to build, run, test, and understand entire application on my laptop before sending it to the cloud.**
 
