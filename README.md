@@ -124,14 +124,14 @@ This workflow explains how the entire system boots, connects, and operates from 
 ```
 choco install virtualbox--version=7.0.8-y 
 choco install vagrant--version=2.3.7-y , Always try to download updated version 
-- choco install git-y 
-- choco install corretto17jdk-y 
-- choco install maven-y 
-- choco install awscli-y 
-- choco install intellijidea-community-y 
-- choco install vscode-y 
-- choco install sublimetext3-y 
-<img width="672" height="474" alt="image" src="https://github.com/user-attachments/assets/c8d37688-f118-4539-a38e-d0f5f07d70d6" />
+choco install git-y 
+choco install corretto17jdk-y 
+choco install maven-y 
+choco install awscli-y 
+choco install intellijidea-community-y 
+choco install vscode-y 
+choco install sublimetext3-y 
+
 ```
 ## Prerequisite
 1. Oracle VM Virtualbox
@@ -139,7 +139,7 @@ choco install vagrant--version=2.3.7-y , Always try to download updated version
 3. Vagrant plugins
    
 **Execute below command in your computer to install host manager plugin.**
-- $ vagrant plugin install vagrant-hostmanager  **(vagrant plugin install vagrant-hostmanager tells Vagrant to download and install the vagrant-hostmanager plugin, which automatically manages your system’s /etc/hosts file for multi‑machine Vagrant setups.)**
+- ```$ vagrant plugin install vagrant-hostmanager ``` **(vagrant plugin install vagrant-hostmanager tells Vagrant to download and install the vagrant-hostmanager plugin, which automatically manages your system’s /etc/hosts file for multi‑machine Vagrant setups.)**
 
 4. Git bash or equivalent editor
 
@@ -151,7 +151,7 @@ choco install vagrant--version=2.3.7-y , Always try to download updated version
 4. cd into vagrant/Manual_provisioning
 
 ## Bring up vm’s
-$ vagrant up
+```$ vagrant up```
 
 <img width="795" height="331" alt="image" src="https://github.com/user-attachments/assets/195c061a-5ed5-474b-bd57-952586962a2a" />
 
