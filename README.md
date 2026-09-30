@@ -1,5 +1,76 @@
 # Multi Trier Application Setup Locally
 **The purpose of this project is to build, run, test, and understand entire application on my laptop before sending it to the cloud.**
+Project Workflow (Full System Architecture)
+This workflow explains how the entire system boots, connects, and operates from the lowest layer (database) to the top (web server).
+
+🧱 1. Infrastructure Layer (Foundation Services)
+1️⃣ MySQL — Database Service
+Initializes first.
+
+Stores all persistent data.
+
+Other services depend on it.
+
+Must be reachable before caching, indexing, or application logic starts.
+
+Workflow Step:  
+✔ Start MySQL → Create DB → Apply schema → Verify connection.
+
+2️⃣ Memcache — Database Caching Layer
+Starts after MySQL.
+
+Caches frequently accessed DB queries.
+
+Reduces load on MySQL.
+
+Used by Tomcat for fast reads.
+
+Workflow Step:  
+✔ Start Memcache → Connect to MySQL → Warm cache (optional).
+
+3️⃣ RabbitMQ — Message Broker / Queue System
+Starts after DB + cache.
+
+Handles async tasks, background jobs, notifications.
+
+Tomcat publishes/consumes messages.
+
+Workflow Step:  
+✔ Start RabbitMQ → Create queues/exchanges → Verify connectivity.
+
+4️⃣ ElasticSearch — Indexing & Search Engine
+Starts before the application.
+
+Stores indexed documents for fast search.
+
+Tomcat may sync or index data on startup.
+
+Workflow Step:  
+✔ Start ElasticSearch → Create index → Map schema → Test search API.
+
+🧩 2. Application Layer
+5️⃣ Tomcat — Application Server
+Depends on MySQL, Memcache, RabbitMQ, ElasticSearch.
+
+Runs backend logic, APIs, authentication, business rules.
+
+Exposes endpoints for Nginx to route traffic.
+
+Workflow Step:  
+✔ Start Tomcat → Load configs → Connect to all services → Run health checks.
+
+🌐 3. Web Layer
+6️⃣ Nginx — Web Server / Reverse Proxy
+Starts last.
+
+Routes HTTP/HTTPS traffic to Tomcat.
+
+Handles caching, SSL, compression, load balancing.
+
+Can serve static files directly.
+
+Workflow Step:  
+✔ Start Nginx → Configure upstream → Enable caching → Expose public endpoints.
 - Windows Tools Install chocolatey from the instructions given in the link below. 
 - https://chocolatey.org/docs/installation 
 ## Run all the below commands on Powershell (Open Powershell as Admin) 
