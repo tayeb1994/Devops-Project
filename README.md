@@ -145,7 +145,7 @@ This workflow explains how the entire system boots, connects, and operates from 
 
 ## VM SETUP
 1. Clone source code.
-https://github.com/hkhcoder/vprofile-project
+```https://github.com/hkhcoder/vprofile-project```
 2. Cd into the repository.
 3. Switch to the local branch.(/d/project_AWS_Imran/vprofile-project)
 4. cd into vagrant/Manual_provisioning
