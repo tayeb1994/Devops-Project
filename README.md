@@ -122,8 +122,8 @@ This workflow explains how the entire system boots, connects, and operates from 
 - https://chocolatey.org/docs/installation 
 ## Run all the below commands on Powershell (Open Powershell as Admin) 
 ```
-- choco install virtualbox--version=7.0.8-y 
-- choco install vagrant--version=2.3.7-y , Always try to download updated version 
+choco install virtualbox--version=7.0.8-y 
+choco install vagrant--version=2.3.7-y , Always try to download updated version 
 - choco install git-y 
 - choco install corretto17jdk-y 
 - choco install maven-y 
