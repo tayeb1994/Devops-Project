@@ -80,6 +80,25 @@ This workflow explains how the entire system boots, connects, and operates from 
 **Workflow Step:**  
 ✔ Start Nginx → Configure upstream → Enable caching → Expose public endpoints.
 
+        ┌──────────────┐
+        │    NGINX     │  ← Web Layer
+        └──────┬───────┘
+               │
+        ┌──────▼───────┐
+        │    Tomcat    │  ← Application Layer
+        └──────┬───────┘
+   ┌────────────┼──────────────┐
+   │            │              │
+┌──▼──┐     ┌───▼───┐     ┌────▼────┐
+│MySQL│     │Memcache│     │RabbitMQ│  ← Infrastructure Layer
+└──┬──┘     └───┬────┘     └────┬────┘
+   │            │              │
+   └────────────┼──────────────┘
+            ┌───▼────┐
+            │ElasticS│
+            └────────┘
+
+
 ## Software Installation
 - Windows Tools Install chocolatey from the instructions given in the link below. 
 - https://chocolatey.org/docs/installation 
