@@ -1,14 +1,4 @@
-<!-- Banner / Header -->
-<p align="center">
-  <img src="https://via.placeholder.com/900x200?text=Welcome+to+my+GitHub" alt="Banner">
-</p>
 
-<h1 align="center">Hi, I'm Tayeb 👋</h1>
-
-<p align="center">
-  <b>Dev • Learner • Builder</b><br/>
-  I like playing with servers, caching, and automation.
-</p>
 # Docker Documentation
 
 ## **1. What Docker is and why developers use it**
