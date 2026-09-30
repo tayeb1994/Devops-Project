@@ -125,9 +125,9 @@ FROM node:20-alpine AS build
 
 Docker Compose lets you define multiple containers (services) in one YAML file and run them together.
 
-- version: "3.9"
+- - version: "3.9"
 
-- services:
+- - services:
   app:
     build: .
     ports:
