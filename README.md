@@ -420,6 +420,124 @@ WantedBy=multi-user.target**
 ```
 <img width="900" height="620" alt="image" src="https://github.com/user-attachments/assets/6581ae2b-bb49-4bf8-8611-ff684cdb64ca" />
 
+## 5.NGINXSETUP 
+Log into the Nginx vm
+```
+$ vagrant ssh web01
+$ sudo-i
+```
+Verify Hosts entry, if entries missing update the it with IP and hostnames
+```# cat /etc/hosts ```
+Update OS with latest patches
+```
+# apt update
+# apt upgrade
+```
+Install nginx
+```# apt install nginx-y```
+
+<img width="982" height="172" alt="image" src="https://github.com/user-attachments/assets/1d357a4c-5e65-4efa-9e93-65860138534a" />
+
+<img width="990" height="703" alt="image" src="https://github.com/user-attachments/assets/3bd23930-f5e8-43d5-beb5-93a751244738" />
+
+**Create Nginx conf file**
+```# vi /etc/nginx/sites-available/vproap```
+Update with below content
+```
+upstream vproapp {
+server app01:8080;
+}
+server {
+listen 80;
+location / {
+proxy_pass http://vproapp;
+}
+}
+```
+It defines an upstream block named vproapp and a server block that proxies all incoming HTTP traffic to that upstream. It’s a classic NGINX reverse‑proxy setup.
+1. Upstream block 
+This creates a logical group of backend servers called vproapp.
+
+        1. upstream = a pool of backend servers NGINX can forward requests to
+
+        2.server app01:8080 = your application is running on host app01 at port 8080
+2. Server block
+This defines how NGINX handles incoming requests.
+
+        1.listen 80 → NGINX listens on port 80 (HTTP)
+
+        2.location / → matches all paths
+
+        3.proxy_pass http://vproapp → forwards the request to the upstream group you defined
+
+<img width="978" height="275" alt="image" src="https://github.com/user-attachments/assets/83a0ddaf-dab3-4e09-9471-beba17f11c64" />
+
+2. Directory Structure
+
+/etc/nginx/nginx.conf — main config
+
+/etc/nginx/sites-available/ — virtual host configs
+
+/etc/nginx/sites-enabled/ — active configs
+
+/var/www/html/ — default web root
+
+Remove default nginx conf
+```# rm-rf /etc/nginx/sites-enabled/default```
+Create link to activate website
+```# ln-s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp```
+That command is part of the NGINX virtual‑host activation process.
+Here’s the clear takeaway:
+```ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp```  creates a symbolic link so NGINX will load your vproapp site configuration.
+What the Command Does
+```1. ln -s```
+Creates a symbolic link (soft link). Think of it as a shortcut pointing to another file.
+
+2. /etc/nginx/sites-available/vproapp
+
+This is where your site configuration file actually lives.You place configs here but NGINX does not load them automatically.
+
+3. /etc/nginx/sites-enabled/vproapp
+
+This directory contains active site configs. NGINX only reads files from sites-enabled.
+Why This Step Matters
+NGINX uses a two‑directory model:
+
+sites-available → store configs
+
+sites-enabled → activate configs
+
+By linking the file into sites-enabled, you tell NGINX: “Load this configuration when you start or reload.” Without this link, your vproapp server block will not be used.
+
+Restart & Status Nginx
+```
+#systemctl restart ngin
+#systemctl status nginx
+```
+<img width="987" height="702" alt="image" src="https://github.com/user-attachments/assets/35b9fe2d-b9ef-4b71-94bb-1dc234a82830" />
+
+It proves that NGNX has taken the request and forward to TOMCAT
+
+<img width="1900" height="1093" alt="image" src="https://github.com/user-attachments/assets/c156f9f2-4da0-4de0-90a0-d85b5ed395b6" />
+
+this pages comes from TOMCAT
+
+<img width="1867" height="1077" alt="image" src="https://github.com/user-attachments/assets/61bef10c-c164-437b-98ad-053069c7d65d" />
+
+we are able to login that means database service is working.
+
+<img width="663" height="486" alt="image" src="https://github.com/user-attachments/assets/dd7fc9b3-dcaf-4ab2-85d6-d68e08e2c130" />
+
+It proves that RabitMQ is connected and working
+
+<img width="1898" height="1022" alt="image" src="https://github.com/user-attachments/assets/dec1bda7-6d3f-4d19-8149-881d4842c4a7" />
+
+It proves that MEMCACHE is connected and working.
+
+
+
+
+
 
 
 
